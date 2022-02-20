@@ -25,7 +25,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"оапоыаопыопооооооооpm.test(\"Status code is 200\", function () {\r",
+									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
@@ -85,14 +85,7 @@
 									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
 									"});\r",
 									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.test(\"Response ID the same as in environment\", function () {\r",
-									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"pet_id\"));\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Response Name the same as in environment\", function() {\r",
-									"     pm.expect(jsonData.category.name).to.eql(pm.environment.get(\"pet_name\"))\r",
-									"})"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -212,14 +205,7 @@
 									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
 									"});\r",
 									"\r",
-									"var jsonData = pm.response.json();\r",
-									"pm.test(\"Response ID the same as in environment\", function () {\r",
-									"    pm.expect(jsonData.id).to.eql(pm.environment.get(\"pet_id\"));\r",
-									"});\r",
 									"\r",
-									"pm.test(\"Response Name the same as in environment\", function() {\r",
-									"     pm.expect(jsonData.category.name).to.eql(pm.environment.get(\"pet_name\"))\r",
-									"})\r",
 									"\r",
 									"\r",
 									""
@@ -255,8 +241,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.environment.set(\"pet_id\", _.random(1,50000));\r",
-									"pm.environment.set(\"pet_name\", 'a' +  _.random(1,50000));"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -285,7 +270,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": {{pet_id}},\r\n  \"category\": {\r\n    \"id\": 99,\r\n    \"name\": \"{{pet_name}}\"\r\n  },\r\n  \"name\": \"mysia1\",\r\n  \"photoUrls\": [\r\n    \"string\"\r\n  ],\r\n  \"tags\": [\r\n    {\r\n      \"id\": 99,\r\n      \"name\": \"Dogs33\"\r\n    }\r\n  ],\r\n  \"status\": \"available\"\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -330,7 +315,21 @@
 					],
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "https://petstore.swagger.io/v2/pet/{{pet_id}}",
+							"protocol": "https",
+							"host": [
+								"petstore",
+								"swagger",
+								"io"
+							],
+							"path": [
+								"v2",
+								"pet",
+								"{{pet_id}}"
+							]
+						}
 					},
 					"response": []
 				}
